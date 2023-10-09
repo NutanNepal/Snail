@@ -4,21 +4,11 @@ import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
-import android.view.animation.LinearInterpolator
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.lumu.snail.categoriesfragment.CategoriesFragment
 import com.lumu.snail.categoriesfragment.MyCategoriesRecyclerViewAdapter
 import com.lumu.snail.chaptersfragment.ChaptersFragment
@@ -35,7 +25,6 @@ class MainActivity : AppCompatActivity(),
     MyChaptersRecyclerViewAdapter.OnChapterItemClickListener {
 
     private var currentTitle = "Home"
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var topAppBar: MaterialToolbar
     private lateinit var actionBarMenu: Menu
 
@@ -88,14 +77,6 @@ class MainActivity : AppCompatActivity(),
                         // Otherwise, go back to the CategoriesFragment and update the title
                         currentTitle = "Home"
                         replaceFragmentContainer(R.id.fragmentContainerView, CategoriesFragment())
-                        /*btnBack.animate().rotationXBy(-90f)
-                            .setDuration(400)
-                            .setInterpolator(LinearInterpolator())
-                            .withEndAction {
-                                btnBack.visibility = View.INVISIBLE
-                            }
-                            .start()
-                            */
                     }
                 }
             }
@@ -114,24 +95,6 @@ class MainActivity : AppCompatActivity(),
         } else {
             onCategoryItemClick(Category.valueOf(currentTitle))
         }
-
-        /*
-        // Check if permission is granted
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            // Permission is granted, you can access external storage
-            val flashcardsDir = File(Environment.getExternalStorageDirectory(), "flashcards")
-            // Use flashcardsDir for further operations
-        } else {
-            // Permission is not granted, request it
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_CODE)
-        }
-        */
-
-        // Find the NavHostFragment and NavController
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        val navController = navHostFragment.navController
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -139,37 +102,15 @@ class MainActivity : AppCompatActivity(),
         return true
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-        val navController = navHostFragment.navController
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }
-
     override fun onCategoryItemClick(category: Category) {
         // Update the title with the selected category name
         currentTitle = category.toString()
+        topAppBar.title = currentTitle
 
-        //val btnBack = this@MainActivity.findViewById<ImageButton>(R.id.btn_back)
-        val appBar = this@MainActivity.findViewById<MaterialToolbar>(R.id.toolbar)
-        appBar.setTitle(currentTitle)
-        /*
-        btnBack.animate()
-            .withStartAction {
-                btnBack.rotationX = 90F
-                btnBack.visibility = View.VISIBLE
-            }
-            .withEndAction{
-            btnBack.animate()
-                .rotationXBy(90F)
-                .setDuration(200)
-                .setInterpolator(LinearInterpolator())
-                .start()
-            }
-            .start()
-         */
         // Replace the current fragment with a new ChaptersFragment for the selected category
         val fragment = ChaptersFragment.newInstance(category)
+        //findNavController(R.id.fragmentContainerView).navigate(fragment.id)
+
         replaceFragmentContainer(R.id.fragmentContainerView, fragment)
     }
 
@@ -200,7 +141,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     fun replaceFragmentContainer(oldFragment: Int, newFragment: Fragment) {
-        //this.findViewById<TextView>(R.id.textView).text = currentTitle
+        topAppBar.title = currentTitle
 
         // Get the FragmentManager
         val fragmentManager = supportFragmentManager
@@ -222,9 +163,9 @@ class MainActivity : AppCompatActivity(),
             flashcardsDir.mkdir()
         }
         if (flashcardsDir.exists() && flashcardsDir.isDirectory){
-            for (filesOrFolders in flashcardsDir.listFiles()){
+            for (filesOrFolders in flashcardsDir.listFiles()!!){
                 if (filesOrFolders.isDirectory){
-                    var folderName = filesOrFolders.name
+                    val folderName = filesOrFolders.name
                     Subjects.addNewSubject(folderName, getFlashcardsfromFolder(folderName, flashcardsDir))
                 }
             }
@@ -234,7 +175,7 @@ class MainActivity : AppCompatActivity(),
     private fun getFlashcardsfromFolder(foldername: String, flashcardsDir: File): MutableList<String>{
         val subjectDir = File(flashcardsDir, foldername)
 
-        var fileNames = mutableListOf<String>()
+        val fileNames = mutableListOf<String>()
 
         if (subjectDir.exists() && subjectDir.isDirectory) {
             // Get a list of files and folders inside the "flashcards" directory

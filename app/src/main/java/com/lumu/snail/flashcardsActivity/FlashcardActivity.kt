@@ -44,7 +44,6 @@ class FlashcardActivity: FragmentActivity() {
             currentPosition = savedInstanceState.getInt(CURRENT_POSITION_KEY)
             currentSeed = savedInstanceState.getLong(CURRENT_SEED)
         }
-        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         // Set the content view for this activity
         setContentView(R.layout.activity_flashcard)

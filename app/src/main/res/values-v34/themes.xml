@@ -1,8 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme. -->
+
     <style name="Theme.Snail_day" parent="Theme.Material3.Dark.NoActionBar">
 
         <!-- Original AppCompat attributes. -->
+        <item name="colorPrimary">@android:color/system_primary_light</item>
+        <item name="colorPrimaryDark">@android:color/system_primary_dark</item>
+        <item name="colorSecondary">@android:color/system_secondary_light</item>
+        <item name="android:colorBackground">@color/launcher</item>
+        <item name="colorError">@android:color/system_error_light</item>
 
         <!-- Status bar color. -->
         <item name="android:windowTranslucentStatus">true</item>

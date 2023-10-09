@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.lumu.snail.R
 import com.lumu.snail.tableOfContents.Category
 
@@ -30,6 +31,10 @@ class ChaptersFragment(private val category: Category): Fragment() {
     ): View? {
         // Inflate the fragment_chapters_list layout.
         val view = inflater.inflate(R.layout.fragment_chapters_list, container, false)
+        val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL /*or LinearLayoutManager.HORIZONTAL*/)
+        divider.dividerInsetStart = 250
+        divider.dividerInsetEnd = 0
+
         // If the inflated view is a RecyclerView, set up the layout manager and adapter.
         if (view is RecyclerView) {
             with(view) {
@@ -45,6 +50,7 @@ class ChaptersFragment(private val category: Category): Fragment() {
                     // The activity hosting this fragment must implement the OnChapterItemClickListener interface.
                     activity as MyChaptersRecyclerViewAdapter.OnChapterItemClickListener
                 )
+                addItemDecoration(divider)
             }
         }
 

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.lumu.snail.R
 import com.lumu.snail.tableOfContents.Category
 
@@ -20,6 +21,10 @@ class CategoriesFragment : Fragment(){
     ): View? {
         val view = inflater.inflate(R.layout.fragment_category_list, container, false)
         val categories :List<Category> = enumValues<Category>().toList()
+        val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL /*or LinearLayoutManager.HORIZONTAL*/)
+        divider.dividerInsetStart = 250
+        divider.dividerInsetEnd = 0
+
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {
@@ -30,6 +35,7 @@ class CategoriesFragment : Fragment(){
                 adapter = MyCategoriesRecyclerViewAdapter(categories,
                     activity as MyCategoriesRecyclerViewAdapter.OnCategoryItemClickListener
                 )
+                addItemDecoration(divider)
             }
         }
         return view
