@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flashcards>
+    <flashcard>
+        <question>Topology</question>
+        <answer>We can think of topologies on a set as various ways of partitioning the set.
+        Any topology is a subset of discrete topology which is the discrete partition on the set.</answer>
+    </flashcard>
+    <flashcard>
+        <question>extension of the scalars</question>
+        <answer>eots</answer>
+    </flashcard>
+    <flashcard>
+        <question>character table of S3</question>
+        <answer>need to write a table</answer>
+    </flashcard>
+    <flashcard>
+        <question>adjoint associativity</question>
+        <answer>aa</answer>
+    </flashcard>
+</flashcards>

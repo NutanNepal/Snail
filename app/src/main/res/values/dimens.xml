@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="index_margin">25dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="normal_font">18sp</dimen>
+    <dimen name="title_font">22sp</dimen>
+    <dimen name="fragment_margin">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="normal_font_holder">20sp</dimen>
+    <dimen name="dimen150dp">150dp</dimen>
+    <dimen name="collapsingToolbarHeight">50dp</dimen>
+</resources>

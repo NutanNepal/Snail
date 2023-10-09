@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/categoryFragment">
+
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.lumu.snail.categoriesfragment.CategoriesFragment"
+        android:label="@string/CategoryFragment"
+        tools:layout="@layout/fragment_category">
+
+        <action
+            android:id="@+id/action_Categories_to_Chapters"
+            app:destination="@id/chapterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chapterFragment"
+        android:name="com.lumu.snail.chaptersfragment.ChaptersFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_chapters">
+
+        <action
+            android:id="@+id/action_Chapters_to_Categories"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+</navigation>
