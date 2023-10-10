@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.lumu.snail.R
 import com.lumu.snail.features.ZoomOutPageTransformer
@@ -47,12 +48,12 @@ class FlashcardActivity: FragmentActivity() {
 
         // Set the content view for this activity
         setContentView(R.layout.activity_flashcard)
+        val topAppBar = this.findViewById<MaterialToolbar>(R.id.topAppBar)
+        topAppBar.title = getChapter()
 
-        this.findViewById<ImageButton>(R.id.btn_back).setOnClickListener {
+        topAppBar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
-        // Set the chapter title from the extra provided by the intent
-        this.findViewById<TextView>(R.id.flashcard_title).text = getChapter()
 
         // Get the ViewPager element from the layout
         viewPager = findViewById(R.id.viewPager)

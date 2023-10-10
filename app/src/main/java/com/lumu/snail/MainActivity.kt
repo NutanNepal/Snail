@@ -2,12 +2,14 @@ package com.lumu.snail
 
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.ui.AppBarConfiguration
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.lumu.snail.categoriesfragment.CategoriesFragment
 import com.lumu.snail.categoriesfragment.MyCategoriesRecyclerViewAdapter
@@ -25,8 +27,6 @@ class MainActivity : AppCompatActivity(),
     MyChaptersRecyclerViewAdapter.OnChapterItemClickListener {
 
     private var currentTitle = "Home"
-    private lateinit var topAppBar: MaterialToolbar
-    private lateinit var actionBarMenu: Menu
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         savedInstanceState.run {
@@ -40,10 +40,9 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        topAppBar = this.findViewById(R.id.toolbar)
-        topAppBar.title = currentTitle
-        setSupportActionBar(topAppBar)
+        val topAppBar = this.findViewById<MaterialToolbar>(R.id.toolbar)
 
+        //setSupportActionBar(topAppBar)
 
         topAppBar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
@@ -105,7 +104,7 @@ class MainActivity : AppCompatActivity(),
     override fun onCategoryItemClick(category: Category) {
         // Update the title with the selected category name
         currentTitle = category.toString()
-        topAppBar.title = currentTitle
+        //topAppBar.title = currentTitle
 
         // Replace the current fragment with a new ChaptersFragment for the selected category
         val fragment = ChaptersFragment.newInstance(category)
@@ -141,7 +140,6 @@ class MainActivity : AppCompatActivity(),
     }
 
     fun replaceFragmentContainer(oldFragment: Int, newFragment: Fragment) {
-        topAppBar.title = currentTitle
 
         // Get the FragmentManager
         val fragmentManager = supportFragmentManager

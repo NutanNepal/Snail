@@ -1,8 +1,14 @@
 <resources>
-    <style name="Widget.Theme.Snail.MyView" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="android:background">@color/gray_400</item>
-        <item name="android:fontFamily">@font/cmunrm</item>
+    <style name="CustomTextToolbarTitle">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/cmunbx</item>
+        <item name="android:textColor">@color/lessCreamy</item>
+        <item name="android:shadowColor">@color/launcher</item>
+        <item name="android:shadowDx">5</item>
+        <item name="android:shadowDy">5</item>
+        <item name="android:shadowRadius">1</item>
     </style>
+
     <style name="CustomTextAppearanceBold">
         <item name="android:textSize">@dimen/title_font</item>
         <item name="android:fontFamily">@font/cmunbx</item>
@@ -12,6 +18,7 @@
         <item name="android:shadowDy">5</item>
         <item name="android:shadowRadius">1</item>
     </style>
+
     <style name="CustomTextAppearanceNormal">
         <item name="android:textSize">@dimen/normal_font</item>
         <item name="android:fontFamily">@font/cmunrm</item>

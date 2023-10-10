@@ -11,9 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/question_cardView"
-        android:layout_margin="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="70dp"
         card_view:cardCornerRadius="0dp"
-        card_view:cardElevation="100dp"
         card_view:contentPadding="5dp">
 
         <TextView
@@ -45,9 +47,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/answer_cardView"
-        android:layout_margin="15dp"
         card_view:cardCornerRadius="2dp"
-        card_view:cardElevation="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="70dp"
         card_view:contentPadding="5dp"
         android:visibility="gone">
 

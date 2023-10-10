@@ -5,36 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="40dp"
-    android:background="@drawable/background">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="0dp"
-            android:layout_toEndOf="@id/sage_title"
-            android:layout_above="@id/linearLayout"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_arrow_back"
-            android:contentDescription="@string/back_button"/>
-
-        <TextView
-            android:id="@+id/sage_title"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/AppBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/CustomTextAppearanceBold"
-            android:textAlignment="center"
-            android:textSize="@dimen/title_font"/>
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                app:titleTextAppearance="@style/CustomTextAppearanceBold"
+                android:layout_marginTop="17dp"
+                app:navigationIcon="@drawable/ic_close_24" />
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <ImageButton
         android:id="@+id/evaluate"
@@ -43,7 +35,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="0dp"
         android:layout_above="@id/linearLayout"
-            android:layout_toStartOf="@+id/sage_title"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -54,18 +45,17 @@
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/sage_title"
+            android:layout_below="@id/AppBar"
             android:orientation="horizontal"
             android:id="@+id/linearLayout">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/codeView_cardView"
                 android:layout_margin="15dp"
                 card_view:cardBackgroundColor="@color/launcher"
                 card_view:cardCornerRadius="0dp"
-                card_view:cardElevation="100dp"
                 card_view:contentPadding="5dp">
 
                     <com.amrdeveloper.codeview.CodeView
@@ -83,11 +73,13 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="70dp"
                 android:id="@+id/sageView_cardView"
-                android:layout_margin="15dp"
                 card_view:cardBackgroundColor="@color/launcher"
                 card_view:cardCornerRadius="2dp"
-                card_view:cardElevation="20dp"
                 card_view:contentPadding="5dp"
                 android:visibility="gone">
 

@@ -7,11 +7,9 @@
         <!-- Status bar color. -->
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
 
         <item name="android:enforceNavigationBarContrast">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-
 
         <!-- enable window content transitions -->
         <item name="android:windowActivityTransitions">true</item>
@@ -25,4 +23,8 @@
 
 
     </style>
+
+    <style name="SecondaryTheme" parent="ThemeOverlay.Material3.DynamicColors.DayNight">
+    </style>
+
 </resources>

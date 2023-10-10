@@ -17,6 +17,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.FragmentActivity
 import com.amrdeveloper.codeview.CodeView
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.lumu.snail.R
 
@@ -49,7 +50,7 @@ class SageActivity : FragmentActivity() {
         codeViewCardView = findViewById(R.id.codeView_cardView)
         sageViewCardView = findViewById(R.id.sageView_cardView)
 
-        findViewById<ImageButton>(R.id.btn_back).setOnClickListener {
+        this.findViewById<MaterialToolbar>(R.id.topAppBar).setNavigationOnClickListener{
             onBackPressedDispatcher.onBackPressed()
         }
 
