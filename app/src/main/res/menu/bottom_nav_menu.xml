@@ -4,21 +4,21 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/baseline_home_24"
-        android:title="Home" />
+        android:title="@string/home" />
 
     <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/baseline_dashboard_24"
-        android:title="Dashboard" />
+        android:title="@string/dashboard" />
 
     <item
         android:id="@+id/navigation_sync"
         android:icon="@drawable/baseline_sync_24"
-        android:title="Sync" />
+        android:title="@string/sync" />
 
     <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/baseline_settings_24"
-        android:title="Settings" />
+        android:title="@string/settings" />
 
 </menu>

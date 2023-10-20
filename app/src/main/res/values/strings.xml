@@ -76,4 +76,9 @@
     <string name="content_description_media">Media</string>
     <string name="fab">Floating Action Bar</string>
     <string name="CategoryFragment">Category Fragment</string>
+    <string name="todo">TODO</string>
+    <string name="refresh">Refresh</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="sync">Sync</string>
+    <string name="settings">Settings</string>
 </resources>

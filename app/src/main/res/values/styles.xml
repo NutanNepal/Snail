@@ -1,31 +1,57 @@
 <resources>
     <style name="CustomTextToolbarTitle">
-        <item name="android:textSize">30sp</item>
-        <item name="android:fontFamily">@font/cmunbx</item>
-        <item name="android:textColor">@color/lessCreamy</item>
-        <item name="android:shadowColor">@color/launcher</item>
-        <item name="android:shadowDx">5</item>
-        <item name="android:shadowDy">5</item>
-        <item name="android:shadowRadius">1</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:fontFamily">@font/cmunrm</item>
+        <item name="textBackground">@color/creamy</item>
     </style>
 
-    <style name="CustomTextAppearanceBold">
-        <item name="android:textSize">@dimen/title_font</item>
-        <item name="android:fontFamily">@font/cmunbx</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:shadowColor">@color/launcher</item>
-        <item name="android:shadowDx">5</item>
-        <item name="android:shadowDy">5</item>
-        <item name="android:shadowRadius">1</item>
+    <style name="CustomTextToolbarTitleCollapsed">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/cmunrm</item>
+        <item name="textBackground">@color/creamy</item>
     </style>
 
     <style name="CustomTextAppearanceNormal">
         <item name="android:textSize">@dimen/normal_font</item>
+    </style>
+
+    <style name="CustomTextAppearanceBoldFlashcards">
+        <item name="android:textSize">@dimen/title_font</item>
+        <item name="android:fontFamily">@font/cmunbx</item>
+    </style>
+
+    <style name="CustomTextAppearanceNormalFlashcards">
+        <item name="android:textSize">@dimen/normal_font</item>
         <item name="android:fontFamily">@font/cmunrm</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:shadowColor">@color/launcher</item>
-        <item name="android:shadowDx">5</item>
-        <item name="android:shadowDy">5</item>
-        <item name="android:shadowRadius">1</item>
     </style>
+
+    <style name="CustomActionBar">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/cmunbx</item>
+        <item name="android:textColor">@color/lessCreamy</item>
+    </style>
+
+    <style name="CustomNormalActionBar">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/lessCreamy</item>
+        <item name="navigationIconTint">@color/black</item>
+    </style>
+
+    <style name="CustomNormalActionBarNight">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/cmunbx</item>
+        <item name="android:textColor">@color/lessCreamy</item>
+    </style>
+
+    <style name="collapsibleToolbar" parent="Widget.Material3.CollapsingToolbar.Large">
+        <item name="collapsedTitleTextAppearance">@style/CustomTextToolbarTitleCollapsed</item>
+        <item name="expandedTitleTextAppearance">@style/CustomTextToolbarTitle</item>
+    </style>
+
+    <style name="collapsibleToolbarNight" parent="Widget.Material3.CollapsingToolbar.Large">
+        <item name="collapsedTitleTextAppearance">@style/CustomTextToolbarTitleCollapsed</item>
+        <item name="expandedTitleTextAppearance">@style/CustomTextToolbarTitle</item>
+    </style>
+
 </resources>

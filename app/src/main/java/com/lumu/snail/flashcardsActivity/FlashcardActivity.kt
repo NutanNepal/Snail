@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.color.DynamicColors
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.lumu.snail.R
 import com.lumu.snail.features.ZoomOutPageTransformer
@@ -48,6 +49,8 @@ class FlashcardActivity: FragmentActivity() {
 
         // Set the content view for this activity
         setContentView(R.layout.activity_flashcard)
+        //DynamicColors.applyToActivityIfAvailable(this)
+
         val topAppBar = this.findViewById<MaterialToolbar>(R.id.topAppBar)
         topAppBar.title = getChapter()
 

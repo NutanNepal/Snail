@@ -8,8 +8,8 @@ class MathJaxParse{
         MathJax.Hub.Config({
             jax: ["input/TeX", "output/CommonHTML"],
             tex: {
-                inlineMath: [['\\(', '\\)'], ['$', '$']],
                 displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                inlineMath: [['\\(', '\\)'], ['$', '$']],
                 processEscapes: true,
                 processEnvironments: true,
                 processRefs: true,
@@ -35,7 +35,7 @@ class MathJaxParse{
                             src: url('file:///android_res/font/cmunrm.ttf');
                         }
                         body {
-                            background-color:#181225;
+                            background-color:#1C1B00;
                             color:#ffffff;
                             font-family: "CompModern", sans-serif;
                             font-size: 18px;

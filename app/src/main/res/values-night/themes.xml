@@ -1,13 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Snail_night" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.Snail_day" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="android:textSize">@dimen/normal_font</item>
+        <item name="collapsingToolbarLayoutLargeStyle">@style/collapsibleToolbarNight</item>
+        <!--
+        <item name="android:fontFamily">@font/cmunrm</item>-->
+
         <!-- Status bar color. -->
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
 
         <item name="android:enforceNavigationBarContrast">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <!-- Customize your theme here. -->
 
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowEnterTransition">@transition/fade_in</item>
+        <item name="android:windowExitTransition">@transition/fade_out</item>
+
+        <!-- specify shared element transitions-->
+        <item name="android:windowSharedElementEnterTransition">@transition/fade_in</item>
+        <item name="android:windowSharedElementExitTransition">@transition/fade_out</item>
     </style>
 </resources>

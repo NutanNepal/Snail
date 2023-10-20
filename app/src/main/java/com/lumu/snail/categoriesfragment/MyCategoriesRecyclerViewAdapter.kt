@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.lumu.snail.databinding.FragmentCategoryBinding
+import com.lumu.snail.tableOfContents.Categories
 import com.lumu.snail.tableOfContents.Category
 
 class MyCategoriesRecyclerViewAdapter(
@@ -34,7 +35,7 @@ class MyCategoriesRecyclerViewAdapter(
             append(position + 1)
             append(".")
         }
-        holder.contentView.text = category.toString()
+        holder.contentView.text = Categories[category.toString()]
         holder.itemView.setOnClickListener {
             onItemClickListener.onCategoryItemClick(category)
         }

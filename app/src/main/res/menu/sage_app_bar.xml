@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/evaluate"
+        android:icon="@drawable/ic_calculate_24"
+        android:title="@string/evaluate"
+        android:contentDescription="@string/evaluate"
+        app:showAsAction="always" />
+
+</menu>

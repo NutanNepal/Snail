@@ -11,36 +11,35 @@
 
     <!-- AppBarLayout with CollapsingToolbarLayout -->
     <com.google.android.material.appbar.AppBarLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar"
             style="?attr/collapsingToolbarLayoutLargeStyle"
             android:layout_width="match_parent"
             android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
-            app:collapsedTitleTextAppearance="@style/CustomTextToolbarTitle"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/title_bg1"
-                android:scaleType="centerCrop"
+                android:src="@drawable/a_space_with_nontrivial_local_homology_1967"
+                android:scaleType="fitEnd"
                 android:fitsSystemWindows="true"
                 android:contentDescription="@string/content_description_media" />
 
             <!-- MaterialToolbar -->
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
+                style="?attr/actionBarStyle"
+                app:title="@string/home"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
-                android:background="@android:color/transparent"
+                android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_arrow_back"
-                android:layout_marginTop="17dp"
-                app:layout_collapseMode="pin"/>
+                app:layout_collapseMode="pin"
+                />
 
     </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -49,7 +48,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="75dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <include layout="@layout/fragmentcontainer_main" />
@@ -58,8 +57,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_height="75dp"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu"/>
 

@@ -1,26 +1,28 @@
 package com.lumu.snail
 
+import SettingsFragment
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.ui.AppBarConfiguration
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.lumu.snail.categoriesfragment.CategoriesFragment
 import com.lumu.snail.categoriesfragment.MyCategoriesRecyclerViewAdapter
 import com.lumu.snail.chaptersfragment.ChaptersFragment
 import com.lumu.snail.chaptersfragment.MyChaptersRecyclerViewAdapter
 import com.lumu.snail.flashcardsActivity.FlashcardActivity
+import com.lumu.snail.generalWebView.WebViewActivity
 import com.lumu.snail.sage.GlossaryView
 import com.lumu.snail.sage.SageActivity
+import com.lumu.snail.tableOfContents.Categories
 import com.lumu.snail.tableOfContents.Category
 import com.lumu.snail.tableOfContents.Subjects
 import java.io.File
+
 
 class MainActivity : AppCompatActivity(),
     MyCategoriesRecyclerViewAdapter.OnCategoryItemClickListener,
@@ -39,10 +41,14 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //DynamicColors.applyToActivityIfAvailable(this)
 
         val topAppBar = this.findViewById<MaterialToolbar>(R.id.toolbar)
+        val bottomAppBar = this.findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
-        //setSupportActionBar(topAppBar)
+        setSupportActionBar(topAppBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        //supportActionBar?.title = currentTitle
 
         topAppBar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()
@@ -66,16 +72,59 @@ class MainActivity : AppCompatActivity(),
             }
         }
 
+        bottomAppBar.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.navigation_home -> {
+                    replaceFragmentContainer(R.id.fragmentContainerView, CategoriesFragment())
+                    true
+                }
+                R.id.navigation_dashboard -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.navigation_sync -> {
+                    // Respond to navigation item 2 click
+                    true
+                }
+                R.id.navigation_settings -> {
+                    replaceFragmentContainer(R.id.fragmentContainerView, SettingsFragment())
+                    true
+                }
+                else -> false
+            }
+        }
+        /*
+
+        bottomAppBar.setOnItemReselectedListener { item ->
+            when(item.itemId) {
+                R.id.navigation_home -> {
+                    replaceFragmentContainer(R.id.fragmentContainerView, CategoriesFragment())
+                }
+                R.id.navigation_dashboard -> {
+                }
+                R.id.navigation_sync -> {
+                }
+                R.id.navigation_settings -> {
+                    replaceFragmentContainer(R.id.fragmentContainerView, SettingsFragment())
+                }
+            }
+        }
+
+         */
+
         val callback: OnBackPressedCallback =
             object : OnBackPressedCallback(true /* enabled by default */) {
                 override fun handleOnBackPressed() {
                     if (currentTitle == "Home") {
-                        // If already on the CategoriesFragment, call the default back behavior (exit the app)
+                        // If already on the CategoriesFragment
                         finish()
                     } else {
                         // Otherwise, go back to the CategoriesFragment and update the title
                         currentTitle = "Home"
-                        replaceFragmentContainer(R.id.fragmentContainerView, CategoriesFragment())
+                        replaceFragmentContainer(
+                            R.id.fragmentContainerView,
+                            CategoriesFragment()
+                        )
                     }
                 }
             }
@@ -97,23 +146,20 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_app_bar, menu)
+        //menuInflater.inflate(R.menu.top_app_bar, menu)
         return true
     }
 
     override fun onCategoryItemClick(category: Category) {
-        // Update the title with the selected category name
-        currentTitle = category.toString()
-        //topAppBar.title = currentTitle
-
+        currentTitle = Categories[category.toString()].toString()
+        this.supportActionBar?.title = currentTitle
         // Replace the current fragment with a new ChaptersFragment for the selected category
-        val fragment = ChaptersFragment.newInstance(category)
-        //findNavController(R.id.fragmentContainerView).navigate(fragment.id)
-
+        val fragment = ChaptersFragment(category)
         replaceFragmentContainer(R.id.fragmentContainerView, fragment)
     }
 
     override fun onChapterItemClick(chapter: String, category: Category) {
+
         if (category.toString() == "Sage") {
             if (chapter == "(Incomplete) Glossary") {
                 startActivity(
@@ -128,6 +174,22 @@ class MainActivity : AppCompatActivity(),
                     ).toBundle()
                 )
             }
+        }
+        else if (category.toString()== "Notes"){
+            startActivity(
+                WebViewActivity.newIntent(this@MainActivity, chapter)
+            )
+        }
+        else if (category.toString() == "OnlineResources"){
+            startActivity(
+                WebViewActivity.newIntent(this@MainActivity, chapter)
+            )
+        }
+        else if (category.toString() == "AMSArticles"){
+            startActivity(
+                WebViewActivity.newIntent(
+                    this@MainActivity, chapter)
+            )
         }
         else{
             // Start the FlashcardActivity for the selected chapter
@@ -153,6 +215,20 @@ class MainActivity : AppCompatActivity(),
 
         // Commit the transaction
         fragmentTransaction.commit()
+
+        // Set the navigation icon visibility based on the current fragment
+        setNavigationIconVisibility(newFragment is ChaptersFragment)
+
+        // Update the action bar title when the fragment changes
+        if (newFragment is ChaptersFragment) {
+            supportActionBar?.title = currentTitle
+        }
+    }
+
+    private fun setNavigationIconVisibility(show: Boolean) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(show)
+        // You can also set a custom icon here if needed
+        // supportActionBar?.setHomeAsUpIndicator(R.drawable.your_custom_icon)
     }
 
     fun getFlashcardsData(){
@@ -164,13 +240,18 @@ class MainActivity : AppCompatActivity(),
             for (filesOrFolders in flashcardsDir.listFiles()!!){
                 if (filesOrFolders.isDirectory){
                     val folderName = filesOrFolders.name
-                    Subjects.addNewSubject(folderName, getFlashcardsfromFolder(folderName, flashcardsDir))
+                    Subjects.addNewSubject(folderName,
+                        getFlashcardsfromFolder(folderName, flashcardsDir)
+                    )
                 }
             }
         }
     }
 
-    private fun getFlashcardsfromFolder(foldername: String, flashcardsDir: File): MutableList<String>{
+    private fun getFlashcardsfromFolder(
+        foldername: String,
+        flashcardsDir: File
+    ): MutableList<String>{
         val subjectDir = File(flashcardsDir, foldername)
 
         val fileNames = mutableListOf<String>()

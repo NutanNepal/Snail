@@ -10,7 +10,7 @@ class SageParse {
                 <head>
                     <style>
                         body {
-                            background-color:#181225;
+                            background-color:#1C1B00;
                             color:#ffffff;
                             font-size: 25px;
                             line-height: 1.3;

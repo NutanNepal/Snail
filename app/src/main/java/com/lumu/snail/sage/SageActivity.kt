@@ -18,6 +18,7 @@ import androidx.core.view.WindowCompat
 import androidx.fragment.app.FragmentActivity
 import com.amrdeveloper.codeview.CodeView
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.color.DynamicColors
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.lumu.snail.R
 
@@ -35,12 +36,14 @@ class SageActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         // Set the content view for this activity
         setContentView(R.layout.activity_sage)
+        //DynamicColors.applyToActivityIfAvailable(this)
         val sageTitle = getSageMode()
-        //this.findViewById<TextView>(R.id.sage_title).text = sageTitle
+
+        val topAppBar = this.findViewById<MaterialToolbar>(R.id.topAppBar)
+        topAppBar.title = sageTitle
 
         codeView = findViewById(R.id.sageEditor)
         configCodeView()
@@ -50,7 +53,7 @@ class SageActivity : FragmentActivity() {
         codeViewCardView = findViewById(R.id.codeView_cardView)
         sageViewCardView = findViewById(R.id.sageView_cardView)
 
-        this.findViewById<MaterialToolbar>(R.id.topAppBar).setNavigationOnClickListener{
+        topAppBar.setNavigationOnClickListener{
             onBackPressedDispatcher.onBackPressed()
         }
 
@@ -59,24 +62,30 @@ class SageActivity : FragmentActivity() {
         codeViewCardView.cameraDistance = distance * scale
         sageViewCardView.cameraDistance = distance * scale
 
-        val evaluate = findViewById<ImageButton>(R.id.evaluate)
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.evaluate -> {
+                    // Handle edit text press
+                    // Get a reference to the input method manager
+                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-        evaluate.setOnClickListener {
-            // Get a reference to the input method manager
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    // Hide the keyboard
+                    imm.hideSoftInputFromWindow(topAppBar.windowToken, 0)
 
-            // Hide the keyboard
-            imm.hideSoftInputFromWindow(evaluate.windowToken, 0)
-
-            inputSage = codeView.text.toString()
-            renderStrings(inputSage)
-            flipflip()
+                    inputSage = codeView.text.toString()
+                    renderStrings(inputSage)
+                    true
+                }
+                else -> false
+            }
         }
 
+        /*
         findViewById<FloatingActionButton>(R.id.flip_fab).setOnClickListener {
             // Handle the click event for the FloatingActionButton
             flipflip()
         }
+         */
     }
 
     private fun configCodeView() {
@@ -110,7 +119,7 @@ class SageActivity : FragmentActivity() {
         codeView.enablePairComplete(true)
         codeView.enablePairCompleteCenterCursor(true)
 
-        codeView.setTextIsSelectable(true)
+        codeView.setTextIsSelectable(false)
     }
 
     @SuppressLint("SetJavaScriptEnabled")

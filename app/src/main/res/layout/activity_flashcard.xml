@@ -16,16 +16,17 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/AppBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.MaterialToolbar
+                style="?attr/actionBarStyle"
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
-                app:titleTextAppearance="@style/CustomTextAppearanceBold"
-                android:layout_marginTop="17dp"
-                app:navigationIcon="@drawable/ic_close_24" />
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextAppearance="@style/CustomTextAppearanceBoldFlashcards"
+                app:titleCentered="true"
+                app:navigationIcon="@drawable/ic_close_24"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -50,8 +51,6 @@
             android:clickable="true"
             android:contentDescription="@string/flipper"
             android:src="@drawable/baseline_flip_24"
-            app:backgroundTint="@color/creamy"
-            app:backgroundTintMode="multiply"
             app:fabSize="mini"
             app:layout_constraintBottom_toTopOf="@id/viewPager"
             app:layout_constraintEnd_toEndOf="parent"

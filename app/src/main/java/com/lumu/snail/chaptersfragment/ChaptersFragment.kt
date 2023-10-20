@@ -14,7 +14,7 @@ import com.lumu.snail.tableOfContents.Category
 
 class ChaptersFragment(private val category: Category): Fragment() {
     constructor() : this(Category.Subjects)
-        // initialize any fields you need to her
+
     private var columnCount = 1
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         savedInstanceState.run {
@@ -56,13 +56,5 @@ class ChaptersFragment(private val category: Category): Fragment() {
 
         // Return the inflated view.
         return view
-    }
-
-    // This companion object contains constant values and a factory method for creating instances of this fragment.
-    companion object {
-        // Factory method for creating instances of this fragment.
-        @JvmStatic
-        fun newInstance(category: Category) =
-            ChaptersFragment(category)
     }
 }

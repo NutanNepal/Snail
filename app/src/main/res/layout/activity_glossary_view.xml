@@ -8,36 +8,39 @@
     android:fitsSystemWindows="true"
     tools:context=".sage.GlossaryView">
 
+    <!-- AppBarLayout with CollapsingToolbarLayout -->
     <com.google.android.material.appbar.AppBarLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fitsSystemWindows="true">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            style="?attr/collapsingToolbarLayoutLargeStyle"
+            style="?attr/collapsingToolbarLayoutMediumStyle"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/a_space_with_nontrivial_local_homology_1967"
-            android:scaleType="centerCrop"
-            android:fitsSystemWindows="true"
-            android:contentDescription="@string/content_description_media"
-            />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/title_bg1"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                android:contentDescription="@string/content_description_media" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:background="@android:color/transparent"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:minHeight="?attr/actionBarSize"
-            app:title=""
-            app:navigationIcon="@drawable/ic_close_24"
-            app:menu="@menu/top_app_bar"
-            android:elevation="0dp"
-            app:layout_collapseMode="pin"/>
+            <!-- MaterialToolbar -->
+            <com.google.android.material.appbar.MaterialToolbar
+                style="?attr/actionBarStyle"
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                app:titleTextAppearance="@style/CustomTextToolbarTitle"
+                app:title="Lorem Ipsum"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                android:layout_marginTop="17dp"
+                app:layout_collapseMode="pin"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 

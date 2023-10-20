@@ -1,8 +1,12 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.Snail_day" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.Snail_day" parent="Theme.Material3.DayNight.NoActionBar">
 
-        <!-- Original AppCompat attributes. -->
+        <item name="android:textSize">@dimen/normal_font</item>
+        <item name="collapsingToolbarLayoutLargeStyle">@style/collapsibleToolbar</item>
+        <!--
+        <item name="android:textSize">@dimen/normal_font</item>
+        <item name="android:fontFamily">@font/cmunrm</item>-->
 
         <!-- Status bar color. -->
         <item name="android:windowTranslucentStatus">true</item>
@@ -16,15 +20,8 @@
         <!-- specify enter and exit transitions -->
         <item name="android:windowEnterTransition">@transition/fade_in</item>
         <item name="android:windowExitTransition">@transition/fade_out</item>
-
         <!-- specify shared element transitions-->
         <item name="android:windowSharedElementEnterTransition">@transition/fade_in</item>
         <item name="android:windowSharedElementExitTransition">@transition/fade_out</item>
-
-
     </style>
-
-    <style name="SecondaryTheme" parent="ThemeOverlay.Material3.DynamicColors.DayNight">
-    </style>
-
 </resources>
